@@ -10,6 +10,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init('OP71LPGL5ze1d3sBB'); // Public key
+        })();
+    </script>
+    
     <style>
         * {
             margin: 0;
@@ -839,68 +847,37 @@
             const percentage = Math.round((correctCount / totalQuestions) * 100);
             const passed = percentage >= 70;
 
-            const report = `
-===========================================
-ОТЧЕТ ПО БИЛЕТУ №1
-===========================================
-ФИО: ${fio}
-Должность: ${position}
-Подразделение: ${department}
-Email: ${email}
-Дата: ${new Date().toLocaleString('ru-RU')}
-===========================================
-РЕЗУЛЬТАТ: ${correctCount}/${totalQuestions} (${percentage}%)
-Статус: ${passed ? '✅ СДАНО' : '❌ НЕ СДАНО'}
-===========================================
-            `;
-
+            // Показываем результат
             resultDiv.className = passed ? 'result success' : 'result error';
             resultDiv.innerHTML = `
                 <h3>${passed ? '✅ ТЕСТ СДАН' : '❌ ТЕСТ НЕ СДАН'}</h3>
-                <p style="font-size: 1.5rem;">${correctCount} из ${totalQuestions} (${percentage}%)</p>
+                <p style="font-size: 1.5rem; font-weight: bold;">${correctCount} из ${totalQuestions} (${percentage}%)</p>
                 ${resultHTML}
+                <p style="margin-top:15px;">⏳ Отправка отчета...</p>
             `;
 
-            fetch('https://formsubmit.co/ajax/lucky_thirtee@mail.ru', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    _subject: `Билет №1: ${fio} - ${percentage}%`,
-                    ФИО: fio,
-                    Должность: position,
-                    Подразделение: department,
-                    Email: email,
-                    Билет: '№1',
-                    Результат: `${correctCount}/${totalQuestions} (${percentage}%)`,
-                    Статус: passed ? 'СДАНО' : 'НЕ СДАНО'
+            // Отправка через EmailJS
+            const templateParams = {
+                to_email: 'dpootot@gmail.com',
+                ticket: '№1',
+                fio: fio,
+                position: position,
+                department: department,
+                email: email,
+                result: `${correctCount}/${totalQuestions} (${percentage}%)`,
+                status: passed ? 'СДАНО' : 'НЕ СДАНО',
+                details: resultHTML.replace(/<[^>]*>/g, '')
+            };
+
+            emailjs.send('service_9ntvcwp', 'template_i3qfcgp', templateParams)
+                .then(function(response) {
+                    console.log('Успешно отправлено!', response);
+                    document.querySelector('.result p:last-child').innerHTML = '✓ Отчет отправлен на dpootot@gmail.com';
                 })
-            }).catch(() => {
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = 'https://formsubmit.co/lucky_thirtee@mail.ru';
-                form.style.display = 'none';
-                
-                const fields = {
-                    '_subject': `Билет №1: ${fio}`,
-                    'ФИО': fio,
-                    'Должность': position,
-                    'Подразделение': department,
-                    'Email': email,
-                    'Билет': '№1',
-                    'Результат': `${correctCount}/${totalQuestions} (${percentage}%)`
-                };
-                
-                for (const [name, value] of Object.entries(fields)) {
-                    const input = document.createElement('input');
-                    input.type = 'hidden';
-                    input.name = name;
-                    input.value = value;
-                    form.appendChild(input);
-                }
-                
-                document.body.appendChild(form);
-                form.submit();
-            });
+                .catch(function(error) {
+                    console.log('Ошибка отправки:', error);
+                    document.querySelector('.result p:last-child').innerHTML = '✗ Ошибка отправки. Пожалуйста, сообщите администратору.';
+                });
         });
     </script>
 </body>
