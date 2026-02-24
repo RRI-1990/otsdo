@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Охрана труда | Билет №2</title>
+    
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #d1fae5 100%);
+            color: #0f172a;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Шапка */
+        .header {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 15px 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .back-link:hover {
+            color: #10b981;
+        }
+        
+        .back-link span {
+            font-size: 1.2rem;
+        }
+        
+        .badge {
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(16,185,129,0.2);
+        }
+        
+        /* Заголовок */
+        .title-section {
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+        
+        .title-section h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .title-section .ticket-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        /* Материалы */
+        .materials-section {
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .section-header span {
+            font-size: 2rem;
+        }
+        
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .material-item {
+            background: white;
+            border-radius: 20px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+        
+        .material-item:hover {
+            transform: translateY(-3px);
+            border-color: #10b981;
+            box-shadow: 0 10px 25px rgba(16,185,129,0.1);
+        }
+        
+        .material-icon {
+            font-size: 1.8rem;
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        .material-info {
+            flex: 1;
+        }
+        
+        .material-info h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        
+        .material-info p {
+            color: #64748b;
+            font-size: 0.75rem;
+        }
+        
+        .material-link {
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            color: white;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        
+        .material-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(16,185,129,0.3);
+        }
+        
+        /* Форма */
+        .form-section {
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 5px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #334155;
+            font-size: 0.9rem;
+        }
+        
+        .form-group label.required::after {
+            content: " *";
+            color: #dc2626;
+            font-weight: 700;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: white;
+            transition: all 0.2s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16,185,129,0.1);
+        }
+        
+        /* Тест */
+        .test-section {
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+        
+        .question {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .question h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #0f172a;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .option:hover {
+            background: #f1f5f9;
+            border-color: #10b981;
+        }
+        
+        .option input[type="radio"],
+        .option input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .checkbox-note {
+            font-size: 0.85rem;
+            color: #10b981;
+            margin-top: 5px;
+        }
+        
+        /* Специальные стили для вопросов с вводом */
+        .matching-question {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .matching-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .matching-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+        }
+        
+        .matching-table .action {
+            font-weight: 500;
+        }
+        
+        .matching-table .number-input {
+            width: 60px;
+            padding: 8px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .matching-table .number-input:focus {
+            outline: none;
+            border-color: #10b981;
+        }
+        
+        /* Кнопка */
+        .btn {
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 15px;
+            cursor: pointer;
+            width: 100%;
+            margin: 20px 0;
+            transition: all 0.2s;
+        }
+        
+        .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(16,185,129,0.3);
+        }
+        
+        /* Результат */
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            display: none;
+        }
+        
+        .result.success {
+            background: #dcfce7;
+            border: 1px solid #86efac;
+            color: #166534;
+            display: block;
+        }
+        
+        .result.error {
+            background: #fee2e2;
+            border: 1px solid #fca5a5;
+            color: #991b1b;
+            display: block;
+        }
+        
+        /* Футер */
+        .footer {
+            margin-top: 40px;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255,255,255,0.5);
+            text-align: center;
+            color: #64748b;
+        }
+        
+        /* Адаптация */
+        @media (max-width: 768px) {
+            .materials-grid,
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .title-section h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Шапка -->
+        <header class="header">
+            <div class="header-content">
+                <a href="index.html" class="back-link">
+                    <span>←</span> К выбору билета
+                </a>
+                <span class="badge">Билет №2</span>
+            </div>
+        </header>
+        
+        <!-- Заголовок -->
+        <section class="title-section">
+            <h1>Общие вопросы охраны труда</h1>
+            <span class="ticket-number">Билет №2</span>
+        </section>
+        
+        <!-- Учебные материалы -->
+        <section class="materials-section">
+            <div class="section-header">
+                <span>📚</span>
+                <h2>Учебные материалы</h2>
+            </div>
+            
+            <div class="materials-grid">
+                <div class="material-item">
+                    <div class="material-icon">📄</div>
+                    <div class="material-info">
+                        <h3>Лекция по охране труда</h3>
+                        <p>PDF, 2.4 МБ</p>
+                    </div>
+                    <a href="materials/lecture.pdf" class="material-link" target="_blank">Открыть</a>
+                </div>
+                
+                <div class="material-item">
+                    <div class="material-icon">⚡</div>
+                    <div class="material-info">
+                        <h3>Электробезопасность</h3>
+                        <p>PDF, 1.1 МБ</p>
+                    </div>
+                    <a href="materials/electric-safety.pdf" class="material-link" target="_blank">Открыть</a>
+                </div>
+                
+                <div class="material-item">
+                    <div class="material-icon">🧯</div>
+                    <div class="material-info">
+                        <h3>Пожарная безопасность</h3>
+                        <p>PDF, 1.3 МБ</p>
+                    </div>
+                    <a href="materials/fire-safety.pdf" class="material-link" target="_blank">Открыть</a>
+                </div>
+                
+                <div class="material-item">
+                    <div class="material-icon">🩹</div>
+                    <div class="material-info">
+                        <h3>Первая помощь</h3>
+                        <p>PDF, 1.0 МБ</p>
+                    </div>
+                    <a href="materials/first-aid.pdf" class="material-link" target="_blank">Открыть</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Форма регистрации -->
+        <section class="form-section">
+            <div class="section-header">
+                <span>👤</span>
+                <h2>Данные сотрудника</h2>
+            </div>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="required">ФИО</label>
+                    <input type="text" id="fio" placeholder="Иванов Иван">
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">Должность</label>
+                    <input type="text" id="position" placeholder="Слесарь">
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">Подразделение</label>
+                    <select id="department">
+                        <option value="">Выберите</option>
+                        <option value="Слесарный цех">Слесарный цех</option>
+                        <option value="Сборочный цех">Сборочный цех</option>
+                        <option value="Электромонтажный">Электромонтажный</option>
+                        <option value="Склад">Склад</option>
+                        <option value="Ремонтная служба">Ремонтная служба</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">Email</label>
+                    <input type="email" id="email" placeholder="ivanov@company.ru">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Тест Билет №2 -->
+        <section class="test-section">
+            <div class="section-header">
+                <span>✍️</span>
+                <h2>Билет №2</h2>
+            </div>
+            
+            <!-- Вопрос 1 -->
+            <div class="question" id="question1">
+                <h3>1. В КАКИХ СЛУЧАЯХ, ЗАЩИЩАЯ СВОИ ТРУДОВЫЕ ПРАВА, РАБОТНИК МОЖЕТ ОТКАЗАТЬСЯ ОТ ВЫПОЛНЕНИЯ РАБОТЫ?</h3>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q1" value="A"> А) Есть угроза жизни и здоровью работника.</label>
+                    <label class="option"><input type="radio" name="q1" value="B"> Б) Работа не предусмотрена трудовым договором.</label>
+                    <label class="option"><input type="radio" name="q1" value="C"> В) Не выданы средства индивидуальной защиты.</label>
+                    <label class="option"><input type="radio" name="q1" value="D"> Г) Во всех вариантах.</label>
+                </div>
+            </div>
+            
+            <!-- Вопрос 2 -->
+            <div class="question" id="question2">
+                <h3>2. КАК КЛАССИФИЦИРУЮТСЯ ПОМЕЩЕНИЯ В ОТНОШЕНИИ ОПАСНОСТИ ПОРАЖЕНИЯ ЛЮДЕЙ ЭЛЕКТРИЧЕСКИМ ТОКОМ?</h3>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q2" value="A"> А) Помещения без повышенной опасности и помещения с повышенной опасностью.</label>
+                    <label class="option"><input type="radio" name="q2" value="B"> Б) Помещения без повышенной опасности, помещения с повышенной опасностью, особо опасные помещения.</label>
+                    <label class="option"><input type="radio" name="q2" value="C"> В) Неопасные, малоопасные, опасные и особо опасные помещения.</label>
+                </div>
+            </div>
+            
+            <!-- Вопрос 3 -->
+            <div class="question" id="question3">
+                <h3>3. КАКОЕ ПОЛОЖЕНИЕ НЕОБХОДИМО ПРИДАТЬ ПОСТРАДАВШЕМУ ПРИ ЗНАЧИТЕЛЬНОЙ КРОВОПОТЕРЕ?</h3>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q3" value="A"> А) Положение лежа на спине с приподнятыми ногами.</label>
+                    <label class="option"><input type="radio" name="q3" value="B"> Б) Положение сидя или полусидя.</label>
+                    <label class="option"><input type="radio" name="q3" value="C"> В) Положение на спине на твердой ровной поверхности.</label>
+                    <label class="option"><input type="radio" name="q3" value="D"> Г) Положение лягушки с подложенным под колени валиком.</label>
+                </div>
+            </div>
+            
+            <!-- Вопрос 4 -->
+            <div class="question" id="question4">
+                <h3>4. КАКИЕ ЦЕЛИ ПРЕСЛЕДУЕТ ОКАЗАНИЕ ПЕРВОЙ ПОМОЩИ ПОСТРАДАВШЕМУ?</h3>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q4" value="A"> А) Облегчение выбора методов диагностики и лечения пострадавшего.</label>
+                    <label class="option"><input type="radio" name="q4" value="B"> Б) Устранение явлений, угрожающих жизни, а также предупреждение дальнейших повреждений и возможных осложнений.</label>
+                    <label class="option"><input type="radio" name="q4" value="C"> В) Поддержание и восстановление здоровья пострадавшего.</label>
+                    <label class="option"><input type="radio" name="q4" value="D"> Г) Содействие прибывшим на место происшествия сотрудникам аварийно-спасательных служб.</label>
+                </div>
+            </div>
+            
+            <!-- Вопрос 5 (несколько ответов) -->
+            <div class="question" id="question5">
+                <h3>5. ПРИЗНАКИ ПОЖАРА (выберите все правильные)</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="q5" value="A"> А) Видимый огонь</label>
+                    <label class="option"><input type="checkbox" name="q5" value="B"> Б) Появление дыма</label>
+                    <label class="option"><input type="checkbox" name="q5" value="C"> В) Появление запаха гари</label>
+                    <label class="option"><input type="checkbox" name="q5" value="D"> Г) Срабатывание автоматической пожарной сигнализации</label>
+                </div>
+                <div class="checkbox-note">Можно выбрать несколько вариантов</div>
+            </div>
+            
+            <!-- Вопрос 6 (несколько ответов) -->
+            <div class="question" id="question6">
+                <h3>6. УЧЕТ МИКРОПОВРЕЖДЕНИЙ (МИКРОТРАВМ) РАБОТНИКОВ ПОЗВОЛЯЕТ РАБОТОДАТЕЛЮ (выберите все правильные)</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="q6" value="A"> А) Улучшить отчетность предприятия по несчастным случаям</label>
+                    <label class="option"><input type="checkbox" name="q6" value="B"> Б) Обеспечить улучшение условий труда</label>
+                    <label class="option"><input type="checkbox" name="q6" value="C"> В) Повысить эффективность управления профессиональными рисками</label>
+                    <label class="option"><input type="checkbox" name="q6" value="D"> Г) Планомерное улучшение здоровья работников</label>
+                </div>
+                <div class="checkbox-note">Можно выбрать несколько вариантов</div>
+            </div>
+            
+            <!-- Вопрос 7 -->
+            <div class="question" id="question7">
+                <h3>7. КАКОЕ ОПРЕДЕЛЕНИЕ СИЗ ЯВЛЯЕТСЯ ВЕРНЫМ: "Средство индивидуальной защиты - это..."</h3>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q7" value="A"> А) Средство, используемое для предотвращения воздействия на работника вредных и опасных факторов</label>
+                    <label class="option"><input type="radio" name="q7" value="B"> Б) Средство, используемое для уменьшения воздействия на работника вредных и опасных факторов</label>
+                    <label class="option"><input type="radio" name="q7" value="C"> В) Средство, используемое для предотвращения или уменьшения воздействия вредных и опасных факторов</label>
+                    <label class="option"><input type="radio" name="q7" value="D"> Г) Средство, используемое для предотвращения или уменьшения воздействия вредных и опасных факторов, особых температурных условий, а также для защиты от загрязнения</label>
+                </div>
+            </div>
+            
+            <!-- Вопрос 8 -->
+            <div class="question" id="question8">
+                <h3>8. ОБЯЗАННОСТИ РАБОТНИКА В ОБЛАСТИ ОХРАНЫ ТРУДА. Работник ОБЯЗАН:</h3>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q8" value="A"> А) соблюдать требования охраны труда</label>
+                    <label class="option"><input type="radio" name="q8" value="B"> Б) правильно использовать оборудование и инструменты</label>
+                    <label class="option"><input type="radio" name="q8" value="C"> В) использовать средства индивидуальной защиты</label>
+                    <label class="option"><input type="radio" name="q8" value="D"> Г) проходить обучение по охране труда</label>
+                    <label class="option"><input type="radio" name="q8" value="E"> Е) проходить обязательные медосмотры</label>
+                    <label class="option"><input type="radio" name="q8" value="F"> Ж) все перечисленное верно</label>
+                </div>
+            </div>
+            
+            <!-- Вопрос 9 -->
+            <div class="question" id="question9">
+                <h3>9. ОБЯЗАН ЛИ РАБОТНИК НЕМЕДЛЕННО ИЗВЕЩАТЬ РУКОВОДИТЕЛЯ О ЛЮБОЙ СИТУАЦИИ, УГРОЖАЮЩЕЙ ЗДОРОВЬЮ ЛЮДЕЙ?</h3>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q9" value="A"> А) Нет, только о несчастных случаях</label>
+                    <label class="option"><input type="radio" name="q9" value="B"> Б) Нет, только о чрезвычайной ситуации</label>
+                    <label class="option"><input type="radio" name="q9" value="C"> В) Да</label>
+                </div>
+            </div>
+            
+            <!-- Вопрос 10 -->
+            <div class="question" id="question10">
+                <h3>10. ОБЯЗАН ЛИ РАБОТНИК ПРИ УВОЛЬНЕНИИ ВЕРНУТЬ СРЕДСТВА ИНДИВИДУАЛЬНОЙ ЗАЩИТЫ РАБОТОДАТЕЛЮ?</h3>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q10" value="A"> А) Работник возвращать СИЗ не обязан</label>
+                    <label class="option"><input type="radio" name="q10" value="B"> Б) Только если СИЗ не пригодны к эксплуатации</label>
+                    <label class="option"><input type="radio" name="q10" value="C"> В) Только если СИЗ пригодны к эксплуатации</label>
+                    <label class="option"><input type="radio" name="q10" value="D"> Г) Средства индивидуальной защиты при увольнении подлежат возврату</label>
+                </div>
+            </div>
+            
+            <!-- Вопрос 11 (4 правильных ответа) -->
+            <div class="question" id="question11">
+                <h3>11. КАКИЕ ЧЕЛОВЕЧЕСКИЕ ФАКТОРЫ ПРИВОДЯТ К НЕСЧАСТНЫМ СЛУЧАЯМ? (выберите 4 правильных ответа)</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="q11" value="A"> А) Спешка</label>
+                    <label class="option"><input type="checkbox" name="q11" value="B"> Б) Голод</label>
+                    <label class="option"><input type="checkbox" name="q11" value="C"> В) Рассеянность</label>
+                    <label class="option"><input type="checkbox" name="q11" value="D"> Г) Невнимательность</label>
+                    <label class="option"><input type="checkbox" name="q11" value="E"> Д) Слишком хорошее настроение</label>
+                    <label class="option"><input type="checkbox" name="q11" value="F"> Е) Любовь к профессии</label>
+                    <label class="option"><input type="checkbox" name="q11" value="G"> Ж) Неправильно оцененная ситуация</label>
+                </div>
+                <div class="checkbox-note">Нужно выбрать 4 правильных ответа</div>
+            </div>
+            
+            <!-- Вопрос 12 (сопоставление) -->
+            <div class="matching-question" id="question12">
+                <h3>12. КАК ПРИМЕНИТЬ ТЕХНИКУ ПЯТИ ШАГОВ БЕЗОПАСНОСТИ? Расставьте шаги по порядку (от 1 до 5):</h3>
+                
+                <table class="matching-table">
+                    <tr><td class="action">Решить, как защитить от опасности себя и других</td><td><input type="number" class="number-input" id="match1" min="1" max="5" placeholder="№"></td></tr>
+                    <tr><td class="action">Решить, что делать в экстренной ситуации</td><td><input type="number" class="number-input" id="match2" min="1" max="5" placeholder="№"></td></tr>
+                    <tr><td class="action">Сделать паузу и продумать работу</td><td><input type="number" class="number-input" id="match3" min="1" max="5" placeholder="№"></td></tr>
+                    <tr><td class="action">Принять решение, возможно ли начинать работу</td><td><input type="number" class="number-input" id="match4" min="1" max="5" placeholder="№"></td></tr>
+                    <tr><td class="action">Определить опасности и возможные последствия</td><td><input type="number" class="number-input" id="match5" min="1" max="5" placeholder="№"></td></tr>
+                </table>
+                <div class="checkbox-note">Введите номера от 1 до 5 в правильном порядке</div>
+            </div>
+            
+            <button id="submit-test" class="btn">ПРОВЕРИТЬ ОТВЕТЫ</button>
+            <div id="test-result" class="result"></div>
+        </section>
+        
+        <!-- Футер -->
+        <footer class="footer">
+            <div>© 2026 Учебный портал по охране труда</div>
+        </footer>
+    </div>
+
+    <script>
+        // ПРАВИЛЬНЫЕ ОТВЕТЫ ДЛЯ БИЛЕТА №2
+        const correctAnswers = {
+            q1: 'D',      // Г) Во всех вариантах
+            q2: 'B',      // Б) Помещения без повышенной опасности, с повышенной опасностью, особо опасные
+            q3: 'A',      // А) Положение лежа на спине с приподнятыми ногами
+            q4: 'B',      // Б) Устранение явлений, угрожающих жизни
+            q5: ['A', 'B', 'C'], // А, Б, В (видимый огонь, дым, запах гари)
+            q6: ['B', 'C'], // Б, В (улучшение условий труда и управление рисками)
+            q7: 'D',      // Г) Полное определение СИЗ
+            q8: 'F',      // Ж) все перечисленное верно
+            q9: 'C',      // В) Да
+            q10: 'D',     // Г) Средства индивидуальной защиты подлежат возврату
+            q11: ['A', 'C', 'D', 'G'], // А, В, Г, Ж (спешка, рассеянность, невнимательность, неправильная оценка)
+            q12: {
+                match3: 1, // Сделать паузу и продумать работу - 1
+                match5: 2, // Определить опасности - 2
+                match1: 3, // Решить, как защитить - 3
+                match2: 4, // Решить, что делать в экстренной ситуации - 4
+                match4: 5  // Принять решение - 5
+            }
+        };
+
+        // Проверка email
+        function isValidEmail(email) {
+            return email.includes('@') && email.includes('.');
+        }
+
+        // Функция для проверки массива ответов
+        function arraysEqual(arr1, arr2) {
+            if (!arr1 || !arr2) return false;
+            if (arr1.length !== arr2.length) return false;
+            return arr1.sort().join(',') === arr2.sort().join(',');
+        }
+
+        document.getElementById('submit-test').addEventListener('click', function() {
+            // Получаем данные сотрудника
+            const fio = document.getElementById('fio').value.trim();
+            const position = document.getElementById('position').value.trim();
+            const department = document.getElementById('department').value;
+            const email = document.getElementById('email').value.trim();
+            const resultDiv = document.getElementById('test-result');
+
+            // Проверка обязательных полей
+            if (!fio || !position || !department || !email) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '❌ Заполните все поля (ФИО, должность, подразделение, email)';
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '❌ Введите правильный email (пример: ivanov@company.ru)';
+                return;
+            }
+
+            // Проверяем ответы
+            let correctCount = 0;
+            let totalQuestions = 12;
+            let resultHTML = '<h4>Результат проверки:</h4>';
+
+            // Вопрос 1
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            if (!q1) resultHTML += `<p>❌ Вопрос 1: не отвечен</p>`;
+            else if (q1.value === correctAnswers.q1) {
+                correctCount++;
+                resultHTML += `<p>✅ Вопрос 1: верно</p>`;
+            } else {
+                resultHTML += `<p>❌ Вопрос 1: неверно (правильный ответ: Г)</p>`;
+            }
+
+            // Вопрос 2
+            const q2 = document.querySelector('input[name="q2"]:checked');
+            if (!q2) resultHTML += `<p>❌ Вопрос 2: не отвечен</p>`;
+            else if (q2.value === correctAnswers.q2) {
+                correctCount++;
+                resultHTML += `<p>✅ Вопрос 2: верно</p>`;
+            } else {
+                resultHTML += `<p>❌ Вопрос 2: неверно (правильный ответ: Б)</p>`;
+            }
+
+            // Вопрос 3
+            const q3 = document.querySelector('input[name="q3"]:checked');
+            if (!q3) resultHTML += `<p>❌ Вопрос 3: не отвечен</p>`;
+            else if (q3.value === correctAnswers.q3) {
+                correctCount++;
+                resultHTML += `<p>✅ Вопрос 3: верно</p>`;
+            } else {
+                resultHTML += `<p>❌ Вопрос 3: неверно (правильный ответ: А)</p>`;
+            }
+
+            // Вопрос 4
+            const q4 = document.querySelector('input[name="q4"]:checked');
+            if (!q4) resultHTML += `<p>❌ Вопрос 4: не отвечен</p>`;
+            else if (q4.value === correctAnswers.q4) {
+                correctCount++;
+                resultHTML += `<p>✅ Вопрос 4: верно</p>`;
+            } else {
+                resultHTML += `<p>❌ Вопрос 4: неверно (правильный ответ: Б)</p>`;
+            }
+
+            // Вопрос 5
+            const q5checkboxes = document.querySelectorAll('input[name="q5"]:checked');
+            const q5values = Array.from(q5checkboxes).map(cb => cb.value);
+            if (q5values.length === 0) resultHTML += `<p>❌ Вопрос 5: не отвечен</p>`;
+            else if (arraysEqual(q5values, correctAnswers.q5)) {
+                correctCount++;
+                resultHTML += `<p>✅ Вопрос 5: верно</p>`;
+            } else {
+                resultHTML += `<p>❌ Вопрос 5: неверно (правильные ответы: А, Б, В)</p>`;
+            }
+
+            // Вопрос 6
+            const q6checkboxes = document.querySelectorAll('input[name="q6"]:checked');
+            const q6values = Array.from(q6checkboxes).map(cb => cb.value);
+            if (q6values.length === 0) resultHTML += `<p>❌ Вопрос 6: не отвечен</p>`;
+            else if (arraysEqual(q6values, correctAnswers.q6)) {
+                correctCount++;
+                resultHTML += `<p>✅ Вопрос 6: верно</p>`;
+            } else {
+                resultHTML += `<p>❌ Вопрос 6: неверно (правильные ответы: Б, В)</p>`;
+            }
+
+            // Вопрос 7
+            const q7 = document.querySelector('input[name="q7"]:checked');
+            if (!q7) resultHTML += `<p>❌ Вопрос 7: не отвечен</p>`;
+            else if (q7.value === correctAnswers.q7) {
+                correctCount++;
+                resultHTML += `<p>✅ Вопрос 7: верно</p>`;
+            } else {
+                resultHTML += `<p>❌ Вопрос 7: неверно (правильный ответ: Г)</p>`;
+            }
+
+            // Вопрос 8
+            const q8 = document.querySelector('input[name="q8"]:checked');
+            if (!q8) resultHTML += `<p>❌ Вопрос 8: не отвечен</p>`;
+            else if (q8.value === correctAnswers.q8) {
+                correctCount++;
+                resultHTML += `<p>✅ Вопрос 8: верно</p>`;
+            } else {
+                resultHTML += `<p>❌ Вопрос 8: неверно (правильный ответ: Ж - все перечисленное)</p>`;
+            }
+
+            // Вопрос 9
+            const q9 = document.querySelector('input[name="q9"]:checked');
+            if (!q9) resultHTML += `<p>❌ Вопрос 9: не отвечен</p>`;
+            else if (q9.value === correctAnswers.q9) {
+                correctCount++;
+                resultHTML += `<p>✅ Вопрос 9: верно</p>`;
+            } else {
+                resultHTML += `<p>❌ Вопрос 9: неверно (правильный ответ: В - Да)</p>`;
+            }
+
+            // Вопрос 10
+            const q10 = document.querySelector('input[name="q10"]:checked');
+            if (!q10) resultHTML += `<p>❌ Вопрос 10: не отвечен</p>`;
+            else if (q10.value === correctAnswers.q10) {
+                correctCount++;
+                resultHTML += `<p>✅ Вопрос 10: верно</p>`;
+            } else {
+                resultHTML += `<p>❌ Вопрос 10: неверно (правильный ответ: Г - подлежат возврату)</p>`;
+            }
+
+            // Вопрос 11
+            const q11checkboxes = document.querySelectorAll('input[name="q11"]:checked');
+            const q11values = Array.from(q11checkboxes).map(cb => cb.value);
+            if (q11values.length === 0) resultHTML += `<p>❌ Вопрос 11: не отвечен</p>`;
+            else if (arraysEqual(q11values, correctAnswers.q11)) {
+                correctCount++;
+                resultHTML += `<p>✅ Вопрос 11: верно</p>`;
+            } else {
+                resultHTML += `<p>❌ Вопрос 11: неверно (правильные ответы: А, В, Г, Ж)</p>`;
+            }
+
+            // Вопрос 12
+            const match1 = document.getElementById('match1').value;
+            const match2 = document.getElementById('match2').value;
+            const match3 = document.getElementById('match3').value;
+            const match4 = document.getElementById('match4').value;
+            const match5 = document.getElementById('match5').value;
+            
+            let q12Correct = true;
+            if (parseInt(match1) !== correctAnswers.q12.match1) q12Correct = false;
+            if (parseInt(match2) !== correctAnswers.q12.match2) q12Correct = false;
+            if (parseInt(match3) !== correctAnswers.q12.match3) q12Correct = false;
+            if (parseInt(match4) !== correctAnswers.q12.match4) q12Correct = false;
+            if (parseInt(match5) !== correctAnswers.q12.match5) q12Correct = false;
+            
+            if (!match1 || !match2 || !match3 || !match4 || !match5) {
+                resultHTML += `<p>❌ Вопрос 12: не заполнен полностью</p>`;
+            } else if (q12Correct) {
+                correctCount++;
+                resultHTML += `<p>✅ Вопрос 12: верно</p>`;
+            } else {
+                resultHTML += `<p>❌ Вопрос 12: неверно (правильный порядок: 3,4,1,5,2)</p>`;
+            }
+
+            const percentage = Math.round((correctCount / totalQuestions) * 100);
+            const passed = percentage >= 70;
+
+            // Формируем отчет
+            const report = `
+===========================================
+ОТЧЕТ ПО БИЛЕТУ №2 (ОХРАНА ТРУДА)
+===========================================
+ФИО: ${fio}
+Должность: ${position}
+Подразделение: ${department}
+Email: ${email}
+Дата: ${new Date().toLocaleString('ru-RU')}
+===========================================
+РЕЗУЛЬТАТ: ${correctCount}/${totalQuestions} (${percentage}%)
+Статус: ${passed ? '✅ СДАНО' : '❌ НЕ СДАНО'}
+===========================================
+            `;
+
+            // Показываем результат
+            resultDiv.className = passed ? 'result success' : 'result error';
+            resultDiv.innerHTML = `
+                <h3>${passed ? '✅ ТЕСТ СДАН' : '❌ ТЕСТ НЕ СДАН'}</h3>
+                <p style="font-size: 1.5rem; font-weight: bold;">${correctCount} из ${totalQuestions} (${percentage}%)</p>
+                ${resultHTML}
+                <p style="margin-top:15px;">Отчет отправлен администратору</p>
+            `;
+
+            // Отправка на почту
+            fetch('https://formsubmit.co/ajax/lucky_thirtee@mail.ru', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    _subject: `Охрана труда Билет №2: ${fio} - ${percentage}%`,
+                    ФИО: fio,
+                    Должность: position,
+                    Подразделение: department,
+                    Email: email,
+                    Билет: '№2',
+                    Результат: `${correctCount}/${totalQuestions} (${percentage}%)`,
+                    Статус: passed ? 'СДАНО' : 'НЕ СДАНО',
+                    Отчет: report
+                })
+            }).catch(() => {
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = 'https://formsubmit.co/ajax/lucky_thirtee@mail.ru';
+                form.style.display = 'none';
+                
+                const fields = {
+                    '_subject': `Охрана труда Билет №2: ${fio}`,
+                    'ФИО': fio,
+                    'Должность': position,
+                    'Подразделение': department,
+                    'Email': email,
+                    'Билет': '№2',
+                    'Результат': `${correctCount}/${totalQuestions} (${percentage}%)`
+                };
+                
+                for (const [name, value] of Object.entries(fields)) {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = name;
+                    input.value = value;
+                    form.appendChild(input);
+                }
+                
+                document.body.appendChild(form);
+                form.submit();
+            });
+        });
+    </script>
+</body>
+</html>
