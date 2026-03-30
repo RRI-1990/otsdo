@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вводный инструктаж по охране труда</title>
+    <!-- Подключение стилей для удобной верстки -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            color: #1e2b3c;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        /* Стили для контейнера презентации */
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Стиль каждого слайда */
+        .slide {
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px -10px rgba(0,20,40,0.25);
+            padding: 2.5rem 2rem;
+            transition: transform 0.2s;
+            border: 1px solid rgba(255,255,255,0.5);
+            backdrop-filter: blur(2px);
+            page-break-inside: avoid;
+        }
+
+        .slide:hover {
+            transform: scale(1.01);
+            box-shadow: 0 25px 50px -12px rgba(0,50,100,0.3);
+        }
+
+        /* Заголовки слайдов */
+        .slide-header {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0b3b5c;
+            border-bottom: 4px solid #ffb347;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .slide-header::before {
+            content: "⛑️";
+            font-size: 2rem;
+        }
+
+        /* Заголовки второго уровня */
+        .slide-subheader {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 1.5rem 0 1rem 0;
+            padding-left: 0.75rem;
+            border-left: 5px solid #3498db;
+        }
+
+        /* Сетки для карточек */
+        .grid-2, .grid-3, .grid-4 {
+            display: grid;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+        /* Карточки */
+        .card {
+            background: #f8fafd;
+            border-radius: 24px;
+            padding: 1.5rem 1rem;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.04);
+            border: 1px solid #e9ecf2;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            background: #e6f0ff;
+            border-color: #a0c4ff;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-weight: 700;
+            color: #1e3a6b;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: #2c3e50;
+        }
+
+        /* Таблицы */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #f2f6fc;
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .info-table td, .info-table th {
+            padding: 1rem;
+            border-bottom: 1px solid #cbd6e3;
+            vertical-align: top;
+        }
+
+        .info-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .info-table th {
+            background: #1e3a6b;
+            color: white;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        /* Значки */
+        .badge {
+            background: #ffb347;
+            color: #1e2b3c;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-right: 0.4rem;
+        }
+
+        .badge-blue {
+            background: #2271b3;
+            color: white;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 800px) {
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+
+            .slide {
+                padding: 1.5rem 1rem;
+            }
+        }
+
+        /* Списки */
+        .list-checks {
+            list-style: none;
+        }
+        .list-checks li {
+            margin-bottom: 0.6rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .list-checks li::before {
+            content: "✔️";
+            position: absolute;
+            left: 0;
+            color: #2a7f2a;
+            font-weight: bold;
+        }
+
+        .list-warnings {
+            list-style: none;
+        }
+        .list-warnings li {
+            margin-bottom: 0.6rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .list-warnings li::before {
+            content: "⚠️";
+            position: absolute;
+            left: 0;
+            color: #b34b00;
+        }
+
+        .list-prohibited {
+            list-style: none;
+        }
+        .list-prohibited li {
+            margin-bottom: 0.6rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .list-prohibited li::before {
+            content: "⛔";
+            position: absolute;
+            left: 0;
+        }
+
+        hr {
+            margin: 2rem 0 1rem;
+            border: none;
+            border-top: 2px dashed #b0c8e0;
+        }
+
+        .footnote {
+            font-size: 0.85rem;
+            color: #4a5f73;
+            background: #eef4fa;
+            padding: 1rem;
+            border-radius: 16px;
+            margin-top: 1rem;
+        }
+
+        .sign-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .sign-item {
+            background: white;
+            border-radius: 12px;
+            padding: 0.5rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            width: 100px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        .sign-item span {
+            display: block;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* заглушки для картинок */
+        .img-placeholder {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(145deg, #d4e1f0, #b8cde0);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e3a6b;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+
+        <!-- СЛАЙД 1: Титульный и цель -->
+        <div class="slide">
+            <div class="slide-header">Вводный инструктаж по охране труда</div>
+            <div style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 200px;">
+                    <div class="img-placeholder" style="height: 180px;">🛡️</div>
+                </div>
+                <div style="flex: 3;">
+                    <p style="font-size: 1.3rem; font-weight: 500;"><span class="badge badge-blue">Основная цель</span> — показать работникам правильные приёмы работы и основные требования безопасности при выполнении работ.</p>
+                    <p style="margin-top: 1rem;"><strong>Вводный инструктаж проводится:</strong></p>
+                    <ul class="list-checks">
+                        <li>со всеми принимаемыми на работу лицами;</li>
+                        <li>с командированными и работниками сторонних организаций;</li>
+                        <li>со студентами, проходящими практику;</li>
+                        <li>другими лицами, участвующими в производственной деятельности.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 2: Трудовой договор -->
+        <div class="slide">
+            <div class="slide-header">Заключение трудового договора (контракта)</div>
+            <p><strong>Трудовой договор</strong> — соглашение между работодателем и работником.</p>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-icon">🏢</div>
+                    <div class="card-title">Работодатель обязуется:</div>
+                    <div class="card-desc">
+                        <ul style="text-align: left; padding-left: 1.2rem;">
+                            <li>предоставить работу по обусловленной функции;</li>
+                            <li>обеспечить условия труда (ТК, коллективный договор, локальные акты);</li>
+                            <li>своевременно и полностью платить зарплату.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">👷</div>
+                    <div class="card-title">Работник обязуется:</div>
+                    <div class="card-desc">
+                        <ul style="text-align: left; padding-left: 1.2rem;">
+                            <li>лично выполнять трудовую функцию;</li>
+                            <li>соблюдать правила внутреннего распорядка.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footnote">
+                ⚖️ Договор заключается в <strong>письменной форме</strong>. Фактическое допущение к работе считается заключением договора. 
+                Возможно <strong>испытание</strong> (указывается в приказе). Запрещается требовать работу, не обусловленную договором.
+            </div>
+        </div>
+
+        <!-- СЛАЙД 3: Ключевые правила безопасности + Права работника (начало) -->
+        <div class="slide">
+            <div class="slide-header">Ключевые правила безопасности</div>
+            <p><span class="badge">Ключевые правила</span> — единые требования к поведению работников, несоблюдение которых может привести к происшествиям.</p>
+            <div class="slide-subheader">Работник имеет право на:</div>
+            <div class="grid-3">
+                <div class="card"><span class="card-icon">🪑</span> рабочее место по охране труда</div>
+                <div class="card"><span class="card-icon">🛡️</span> соцстрахование от НС и профзаболеваний</div>
+                <div class="card"><span class="card-icon">ℹ️</span> достоверную информацию об условиях труда</div>
+                <div class="card"><span class="card-icon">🚫</span> отказ от работ при опасности для жизни</div>
+                <div class="card"><span class="card-icon">🧤</span> обеспечение СИЗ за счёт работодателя</div>
+                <div class="card"><span class="card-icon">📚</span> обучение безопасным методам</div>
+                <div class="card"><span class="card-icon">🔄</span> переподготовку при ликвидации рабочего места</div>
+                <div class="card"><span class="card-icon">🔍</span> запрос проверки условий труда</div>
+                <div class="card"><span class="card-icon">🏛️</span> обращение в органы власти, профсоюзы</div>
+                <div class="card"><span class="card-icon">👥</span> участие в рассмотрении вопросов охраны труда и в расследовании НС</div>
+                <div class="card"><span class="card-icon">🩺</span> внеочередной медосмотр с сохранением места и среднего заработка</div>
+                <div class="card"><span class="card-icon">💰</span> компенсации за тяжёлые/вредные работы</div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 4: Обязанности работника и ответственность -->
+        <div class="slide">
+            <div class="slide-header">Обязанности и ответственность</div>
+            <div class="grid-2">
+                <div>
+                    <h3 class="slide-subheader">Работник обязан:</h3>
+                    <ul class="list-checks">
+                        <li>соблюдать требования охраны труда;</li>
+                        <li>правильно применять СИЗ;</li>
+                        <li>проходить обучение, инструктаж, стажировку и проверку знаний;</li>
+                        <li>немедленно извещать руководителя о любой угрозе, несчастном случае, ухудшении здоровья;</li>
+                        <li>проходить обязательные медосмотры.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="slide-subheader">Ответственность за нарушения</h3>
+                    <p>До применения взыскания работодатель должен затребовать <strong>письменное объяснение</strong>. Если по истечении двух дней объяснение не предоставлено — составляется акт.</p>
+                    <p class="badge" style="margin-top: 1rem;">⚡ Лица, виновные в нарушении требований охраны труда, несут ответственность согласно законодательству РФ.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 5: Труд женщин и запреты -->
+        <div class="slide">
+            <div class="slide-header">Труд женщин и особые условия</div>
+            <div class="grid-2">
+                <div>
+                    <h3 class="slide-subheader">Ограничения</h3>
+                    <ul class="list-warnings">
+                        <li>Ограничен труд на тяжёлых/вредных работах.</li>
+                        <li>Запрет на подъём тяжестей вручную сверх норм.</li>
+                        <li>Запрет на работу в ночное время.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="slide-subheader">Беременным женщинам</h3>
+                    <ul class="list-prohibited">
+                        <li>Запрещены командировки, сверхурочные, ночные смены, выходные/праздники.</li>
+                    </ul>
+                    <p><strong>Женщины с детьми до 3 лет</strong> могут привлекаться только с письменного согласия и если это не запрещено медзаключением. Они должны быть письменно ознакомлены с правом отказа.</p>
+                </div>
+            </div>
+            <h3 class="slide-subheader">Работнику запрещается:</h3>
+            <div class="grid-3">
+                <div class="card">🍷 находиться в нетрезвом состоянии</div>
+                <div class="card">⚡ прикасаться к неизолированным проводам, открывать электрошкафы</div>
+                <div class="card">🚷 проходить в непредназначенных местах</div>
+                <div class="card">🚧 заходить за ограждения опасных зон</div>
+                <div class="card">⚙️ прикасаться к движущимся механизмам</div>
+                <div class="card">🛠️ самостоятельно исправлять электрооборудование</div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 6: Опасные зоны и вредные факторы -->
+        <div class="slide">
+            <div class="slide-header">Опасные зоны и производственные факторы</div>
+            <p><strong>Постоянно действующие опасные зоны:</strong> ближе 2 м от неограждённых перепадов высоты ≥1.8 м; места с вредными веществами выше ПДК.</p>
+            <div class="grid-2">
+                <div>
+                    <h3 class="slide-subheader">Основные вредные факторы</h3>
+                    <ul class="list-warnings">
+                        <li>Подвижные части машин, механизмов</li>
+                        <li>Неизолированные токоведущие части</li>
+                        <li>Перемещение грузов кранами</li>
+                        <li>Оборудование с ядовитыми/взрывчатыми веществами</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="slide-subheader">Потенциально опасные зоны</h3>
+                    <ul class="list-warnings">
+                        <li>Неограждённые участки вблизи строящихся зданий</li>
+                        <li>Зоны перемещения машин</li>
+                        <li>Колодцы, шурфы (должны быть закрыты или ограждены)</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="footnote">🌙 В темное время суток опасные зоны должны быть освещены.</p>
+        </div>
+
+        <!-- СЛАЙД 7: Знаки безопасности (группы) -->
+        <div class="slide">
+            <div class="slide-header">Знаки безопасности</div>
+            <div class="sign-row">
+                <div class="sign-item"><div class="img-placeholder" style="height: 60px; font-size: 2rem;">🚫</div><span>Запрещающие</span></div>
+                <div class="sign-item"><div class="img-placeholder" style="height: 60px; font-size: 2rem;">⚠️</div><span>Предупреждающие</span></div>
+                <div class="sign-item"><div class="img-placeholder" style="height: 60px; font-size: 2rem;">🔥</div><span>Пожарной безопасности</span></div>
+                <div class="sign-item"><div class="img-placeholder" style="height: 60px; font-size: 2rem;">✅</div><span>Предписывающие</span></div>
+                <div class="sign-item"><div class="img-placeholder" style="height: 60px; font-size: 2rem;">🟢</div><span>Эвакуационные</span></div>
+                <div class="sign-item"><div class="img-placeholder" style="height: 60px; font-size: 2rem;">ℹ️</div><span>Указательные</span></div>
+            </div>
+            <p>Каждый работник обязан изучить расположение огнетушителей, аварийных выходов, ручных извещателей, путевых знаков.</p>
+        </div>
+
+        <!-- СЛАЙД 8: Электробезопасность -->
+        <div class="slide">
+            <div class="slide-header">Предупреждение электротравматизма</div>
+            <div class="grid-2">
+                <div>
+                    <h3 class="slide-subheader">Факторы риска</h3>
+                    <ul class="list-warnings">
+                        <li>Протяженные электросети</li>
+                        <li>Постоянный контакт с нетоковедущими частями</li>
+                        <li>Подвижные механизмы, связанные с электричеством</li>
+                        <li>Металлоконструкции, на которых возможно появление тока</li>
+                        <li>Ручной электроинструмент, электросварка</li>
+                        <li>Работа в замкнутых пространствах</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="slide-subheader">Меры защиты</h3>
+                    <ul class="list-checks">
+                        <li>Изоляция (усиленная/двойная)</li>
+                        <li>Недоступность токоведущих частей (ограждения)</li>
+                        <li>Заземление/зануление</li>
+                        <li>Автоматическое защитное отключение</li>
+                        <li>Понижение напряжения ≤50В</li>
+                        <li>Разделение сетей, блокировки, сигнализация</li>
+                        <li>Защитные средства и приспособления</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 9: СИЗ - головы, дыхания, одежда, обувь -->
+        <div class="slide">
+            <div class="slide-header">Средства индивидуальной защиты (СИЗ)</div>
+            <p><strong>11 классов СИЗ:</strong> изолирующие костюмы, СИЗОД, спецодежда, защита ног, рук, головы, лица, глаз, органа слуха, от падений, дерматологические, комплексные.</p>
+            <div class="grid-4">
+                <div class="card"><div class="img-placeholder">⛑️</div><span class="card-title">Голова</span> каски, каскетки, шлемы</div>
+                <div class="card"><div class="img-placeholder">😷</div><span class="card-title">Дыхание</span> респираторы, противогазы, самоспасатели</div>
+                <div class="card"><div class="img-placeholder">🧥</div><span class="card-title">Спецодежда</span> куртки, костюмы, комбинезоны</div>
+                <div class="card"><div class="img-placeholder">👟</div><span class="card-title">Обувь</span> сапоги, ботинки, бахилы</div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 10: СИЗ - руки, глаза/лицо, слух, от падений -->
+        <div class="slide">
+            <div class="slide-header">СИЗ (продолжение)</div>
+            <div class="grid-4">
+                <div class="card"><div class="img-placeholder">🧤</div><span class="card-title">Руки</span> рукавицы, перчатки, налокотники</div>
+                <div class="card"><div class="img-placeholder">👓</div><span class="card-title">Глаза/лицо</span> очки, щитки, козырьки</div>
+                <div class="card"><div class="img-placeholder">🎧</div><span class="card-title">Слух</span> наушники, вкладыши, шлемы</div>
+                <div class="card"><div class="img-placeholder">🧗</div><span class="card-title">От падения с высоты</span> привязи, стропы, канаты, трипод, каски с ремнём</div>
+            </div>
+            <p class="footnote">К работам на высоте относятся работы при падении с 1,8 м и более, подъеме по лестнице >5 м, вблизи неограждённых перепадов менее 2 м и др.</p>
+        </div>
+
+        <!-- СЛАЙД 11: Порядок выдачи СИЗ и уход -->
+        <div class="slide">
+            <div class="slide-header">Порядок и нормы выдачи СИЗ</div>
+            <ul class="list-checks">
+                <li>Спецодежда, обувь и предохранительные приспособления выдаются бесплатно по Типовым отраслевым нормам.</li>
+                <li>Работодатель следит, чтобы рабочие пользовались исправными СИЗ.</li>
+                <li>Тёплые вещи выдаются с наступлением холодов, а в тёплое время сдаются на хранение.</li>
+                <li>Стирка, ремонт — за счёт работодателя.</li>
+                <li>Рабочие обязаны бережно относиться и сообщать о необходимости ремонта/стирки.</li>
+                <li>При преждевременном износе не по вине работника — замена/ремонт работодателем.</li>
+                <li>На вредных работах выдаются смывающие средства, молоко.</li>
+            </ul>
+        </div>
+
+        <!-- СЛАЙД 12: Средства коллективной защиты -->
+        <div class="slide">
+            <div class="slide-header">Средства коллективной защиты</div>
+            <div class="grid-3">
+                <div class="card">☢️ от излучений</div>
+                <div class="card">🌬️ нормализация воздуха</div>
+                <div class="card">💡 нормализация освещения</div>
+                <div class="card">📳 от вибрации</div>
+                <div class="card">🔊 от ультра- и инфразвука</div>
+                <div class="card">⚡ от электротока, статики</div>
+                <div class="card">⚙️ от механических факторов</div>
+                <div class="card">🧪 от химических факторов</div>
+                <div class="card">🦠 от биологических факторов</div>
+                <div class="card">🧗 от падения с высоты</div>
+                <div class="card">🌡️ от экстремальных температур</div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 13: Причины несчастных случаев -->
+        <div class="slide">
+            <div class="slide-header">Основные причины несчастных случаев</div>
+            <div class="grid-2">
+                <div>
+                    <h3 class="slide-subheader">Организационные</h3>
+                    <ul class="list-warnings">
+                        <li>Несоответствие техпроцесса нормам</li>
+                        <li>Отсутствие техкарт, мероприятий</li>
+                        <li>Отсутствие надзора, низкая дисциплина</li>
+                        <li>Недостатки в организации рабочего места</li>
+                        <li>Неисправность/отсутствие вспомогательных устройств</li>
+                        <li>Недостаточность инструктажа</li>
+                        <li>Низкая квалификация руководителей</li>
+                        <li>Неиспользование СИЗ</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="slide-subheader">Технические</h3>
+                    <ul class="list-warnings">
+                        <li>Конструктивные недостатки оборудования</li>
+                        <li>Отсутствие механизации тяжёлых операций</li>
+                        <li>Отсутствие ограждений</li>
+                        <li>Нарушение электробезопасности</li>
+                        <li>Неисправность подъёмных механизмов, оборудования, инструмента</li>
+                        <li>Несоблюдение габаритов</li>
+                        <li>Отсутствие сигнализации</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 14: Пожарная безопасность -->
+        <div class="slide">
+            <div class="slide-header">Пожарная безопасность</div>
+            <ul class="list-checks">
+                <li>Знать место первичных средств пожаротушения.</li>
+                <li>Курить только в отведённых местах.</li>
+                <li>При работе с огнеопасными материалами иметь рядом средства тушения.</li>
+                <li>Уходя последним, выключить электросеть (кроме дежурного освещения).</li>
+            </ul>
+            <h3 class="slide-subheader">При обнаружении пожара:</h3>
+            <ul class="list-checks">
+                <li>Прекратить работу, вызвать пожарную охрану <strong>01</strong> (с сотового 112), сообщить адрес, место, ФИО.</li>
+                <li>Принять меры к эвакуации людей и ценностей.</li>
+                <li>Отключить электрооборудование.</li>
+                <li>Тушить пожар имеющимися средствами.</li>
+                <li>Сообщить руководителю, оповестить коллег.</li>
+                <li>При сигнале опасности покинуть здание.</li>
+            </ul>
+            <p class="footnote">🧯 Огнетушители: порядок применения — см. инструкцию на этикетке.</p>
+        </div>
+
+        <!-- СЛАЙД 15: Освобождение от действия электрического тока -->
+        <div class="slide">
+            <div class="slide-header">Освобождение пострадавшего от действия тока</div>
+            <div class="grid-2">
+                <div>
+                    <h3 class="slide-subheader">Напряжение до 1000 В</h3>
+                    <ul class="list-checks">
+                        <li>Воспользоваться сухой одеждой, канатом, доской.</li>
+                        <li>Если одежда сухая — можно взять за неё, избегая касания металла и открытых частей тела.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="slide-subheader">Напряжение свыше 1000 В</h3>
+                    <ul class="list-checks">
+                        <li>Быстро отключить часть установки.</li>
+                        <li>Использовать диэлектрические перчатки, боты, изолирующую штангу или клещи.</li>
+                        <li>Обеспечить освещение от другого источника на случай отключения света.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footnote" style="margin-top: 1.5rem;">
+                ❗ Внимание: при освобождении важно не оказаться под напряжением самому.
+            </div>
+        </div>
+
+        <!-- СЛАЙД 16: Личная гигиена и заключительный -->
+        <div class="slide">
+            <div class="slide-header">Обязанность работника</div>
+            <p style="font-size: 1.2rem;">Соблюдать правила техники безопасности и <strong>личной гигиены</strong>.</p>
+            <p>Изучить расположение основных цехов, огнетушителей, аварийных выходов, пожарных извещателей, путевых знаков.</p>
+            <hr>
+            <p style="font-weight: 600; text-align: center;">Соблюдение требований охраны труда — залог вашей безопасности и здоровья!</p>
+        </div>
+    </div>
+</body>
+</html>

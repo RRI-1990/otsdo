@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Охрана труда • Учебный портал</title>
+    
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #d1fae5 100%);
+            color: #0f172a;
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Шапка */
+        .header {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 15px 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            transform: rotate(5deg);
+            box-shadow: 0 10px 20px rgba(16,185,129,0.2);
+        }
+        
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .logo-text p {
+            color: #3b82f6;
+            font-size: 0.9rem;
+        }
+        
+        .stats {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .stats span {
+            background: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #0f172a;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        /* Герой-секция */
+        .hero {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 40px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(59,130,246,0.1);
+            border: 1px solid rgba(255,255,255,0.8);
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: #475569;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        /* Блок с курсами */
+        .courses-section {
+            margin: 60px 0;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .section-title h2 span {
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-link {
+            color: #64748b;
+            font-weight: 500;
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .course-card {
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.8);
+            transition: all 0.3s;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(16,185,129,0.15);
+            border-color: #10b981;
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, #d1fae5 0%, #dbeafe 100%);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+        }
+        
+        .card-header h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0f172a;
+            line-height: 1.3;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background: #e2e8f0;
+            color: #334155;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .tag.important {
+            background: #d1fae5;
+            color: #059669;
+        }
+        
+        .card-description {
+            color: #475569;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .card-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #475569;
+            font-size: 0.8rem;
+        }
+        
+        .course-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 12px 18px;
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        
+        .course-link:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(16,185,129,0.3);
+        }
+        
+        .course-link span {
+            width: 28px;
+            height: 28px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Блок с видеоинструктажами (внизу) */
+        .video-section {
+            margin: 60px 0;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .video-card {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.8);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(16,185,129,0.15);
+            border-color: #10b981;
+        }
+        
+        .video-preview {
+            position: relative;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #d1fae5 0%, #dbeafe 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-preview video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .play-button {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #10b981;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .play-button:hover {
+            transform: scale(1.1);
+            background: white;
+        }
+        
+        .video-info {
+            padding: 20px;
+        }
+        
+        .video-info h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #0f172a;
+        }
+        
+        .video-info p {
+            color: #475569;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .video-meta {
+            display: flex;
+            gap: 15px;
+            color: #64748b;
+            font-size: 0.8rem;
+        }
+        
+        .video-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        /* Футер */
+        .footer {
+            margin-top: 60px;
+            padding: 30px 0;
+            border-top: 1px solid rgba(255,255,255,0.5);
+            text-align: center;
+            color: #64748b;
+        }
+        
+        /* Модальное окно для видео */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            width: 90%;
+            max-width: 800px;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .modal video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            transition: background 0.2s;
+        }
+        
+        .close-modal:hover {
+            background: rgba(0,0,0,0.7);
+        }
+        
+        /* Адаптация */
+        @media (max-width: 992px) {
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .courses-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .section-title {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .stats span {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 30px 20px;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Шапка -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div class="logo-text">
+                        <h1>ОХРАНА ТРУДА</h1>
+                        <p>Учебный портал</p>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span>5 программ обучения</span>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Герой-секция -->
+        <section class="hero">
+            <span class="hero-badge">Обучение по охране труда</span>
+            <h2>Пройди обучение и проверь знания</h2>
+            <p>5 программ обучения и видеоинструктажи для подготовки</p>
+        </section>
+        
+        <!-- Блок с программами обучения (НАВЕРХУ) -->
+        <section class="courses-section">
+            <div class="section-title">
+                <h2>Программы <span>обучения</span></h2>
+                <span class="section-link">5 программ</span>
+            </div>
+            
+            <div class="courses-grid">
+                <!-- Курс 1: Общие вопросы охраны труда -->
+                <div class="course-card">
+                    <div class="card-header">
+                        <div class="card-icon">🪖</div>
+                        <h3>Общие вопросы охраны труда и функционирования системы управления охраной труда</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tags">
+                            <span class="tag important">✅ Актуально</span>
+                            <span class="tag">16 часов</span>
+                        </div>
+                        <p class="card-description">
+                            Обучение по общим вопросам охраны труда и функционирования СУОТ. Продолжительность 16 часов.
+                        </p>
+                        <div class="card-meta">
+                            <div class="meta-item"><span>📋</span> 2 билета</div>
+                            <div class="meta-item"><span>📚</span> 4 материала</div>
+                            <div class="meta-item"><span>🎯</span> 70% проходной</div>
+                        </div>
+                        <a href="courses/course-1-ohrana-truda/index.html" class="course-link">
+                            Начать обучение
+                            <span>→</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Курс 2: Безопасные методы при воздействии вредных факторов -->
+                <div class="course-card">
+                    <div class="card-header">
+                        <div class="card-icon">⚠️</div>
+                        <h3>Безопасные методы и приемы выполнения работ при воздействии вредных и (или) опасных производственных факторов</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tags">
+                            <span class="tag">Скоро</span>
+                            <span class="tag">16 часов</span>
+                        </div>
+                        <p class="card-description">
+                            Обучение безопасным методам и приемам выполнения работ при воздействии вредных и (или) опасных производственных факторов, источников опасности, идентифицированных в рамках СОУТ и оценки профессиональных рисков. Продолжительность 16 часов.
+                        </p>
+                        <div class="card-meta">
+                            <div class="meta-item"><span>📋</span> В разработке</div>
+                            <div class="meta-item"><span>📚</span> Материалы готовятся</div>
+                        </div>
+                        <div class="course-link" style="background: #94a3b8; cursor: not-allowed;">
+                            Скоро
+                            <span>⏳</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Курс 3: Безопасные методы работ повышенной опасности -->
+                <div class="course-card">
+                    <div class="card-header">
+                        <div class="card-icon">🔧⚡</div>
+                        <h3>Безопасные методы и приемы выполнения работ повышенной опасности</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tags">
+                            <span class="tag">Скоро</span>
+                            <span class="tag">16 часов</span>
+                        </div>
+                        <p class="card-description">
+                            Обучение безопасным методам и приемам выполнения работ повышенной опасности, к которым предъявляются дополнительные требования в соответствии с нормативными правовыми актами, содержащими государственные нормативные требования охраны труда.
+                        </p>
+                        <div class="card-meta">
+                            <div class="meta-item"><span>📋</span> В разработке</div>
+                            <div class="meta-item"><span>📚</span> Материалы готовятся</div>
+                        </div>
+                        <div class="course-link" style="background: #94a3b8; cursor: not-allowed;">
+                            Скоро
+                            <span>⏳</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Курс 4: Использование СИЗ -->
+                <div class="course-card">
+                    <div class="card-header">
+                        <div class="card-icon">🛡️</div>
+                        <h3>Обучение работников использованию (применению) средств индивидуальной защиты</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tags">
+                            <span class="tag">Скоро</span>
+                            <span class="tag">16 часов</span>
+                        </div>
+                        <p class="card-description">
+                            Использование (применение) средств индивидуальной защиты. Продолжительность 16 часов.
+                        </p>
+                        <div class="card-meta">
+                            <div class="meta-item"><span>📋</span> В разработке</div>
+                            <div class="meta-item"><span>📚</span> Материалы готовятся</div>
+                        </div>
+                        <div class="course-link" style="background: #94a3b8; cursor: not-allowed;">
+                            Скоро
+                            <span>⏳</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Курс 5: Оказание первой помощи -->
+                <div class="course-card">
+                    <div class="card-header">
+                        <div class="card-icon">🩹</div>
+                        <h3>Оказание первой помощи пострадавшим</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tags">
+                            <span class="tag">Скоро</span>
+                            <span class="tag">16 часов</span>
+                        </div>
+                        <p class="card-description">
+                            Оказание первой помощи пострадавшим. Продолжительность 16 часов.
+                        </p>
+                        <div class="card-meta">
+                            <div class="meta-item"><span>📋</span> В разработке</div>
+                            <div class="meta-item"><span>📚</span> Материалы готовятся</div>
+                        </div>
+                        <div class="course-link" style="background: #94a3b8; cursor: not-allowed;">
+                            Скоро
+                            <span>⏳</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Блок с видеоинструктажами (ВНИЗУ) -->
+        <section class="video-section">
+            <div class="section-title">
+                <h2>Обязательные <span>видеоинструктажи</span></h2>
+                <span class="section-link">Для подготовки к тестам</span>
+            </div>
+            
+            <div class="video-grid">
+                <!-- Видео 1: Вводный инструктаж -->
+                <div class="video-card" onclick="openVideo('videos/intro-instruktazh.mp4')">
+                    <div class="video-preview">
+                        <video src="videos/intro-instruktazh.mp4" preload="metadata"></video>
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Вводный инструктаж</h3>
+                        <p>Общие правила охраны труда для всех работников</p>
+                        <div class="video-meta">
+                            <span>⏱️ 5 мин</span>
+                            <span>📋 Обязательно</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Видео 2: Электроустановки -->
+                <div class="video-card" onclick="openVideo('videos/electro-instruktazh.mp4')">
+                    <div class="video-preview">
+                        <video src="videos/electro-instruktazh.mp4" preload="metadata"></video>
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Инструктаж при работе с электроустановками</h3>
+                        <p>Правила безопасности для электриков и не только</p>
+                        <div class="video-meta">
+                            <span>⏱️ 7 мин</span>
+                            <span>⚡ Группа I</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Видео 3: Ручной инструмент -->
+                <div class="video-card" onclick="openVideo('videos/hand-tool-instruktazh.mp4')">
+                    <div class="video-preview">
+                        <video src="videos/hand-tool-instruktazh.mp4" preload="metadata"></video>
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Инструктаж при работе с ручным инструментом</h3>
+                        <p>Как избежать травм при работе с молотками, зубилами и т.д.</p>
+                        <div class="video-meta">
+                            <span>⏱️ 6 мин</span>
+                            <span>🔨 Для слесарей</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Видео 4: Работы на высоте -->
+                <div class="video-card" onclick="openVideo('videos/height-instruktazh.mp4')">
+                    <div class="video-preview">
+                        <video src="videos/height-instruktazh.mp4" preload="metadata"></video>
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Инструктаж при работах на высоте</h3>
+                        <p>Страховка, лестницы, правила безопасности</p>
+                        <div class="video-meta">
+                            <span>⏱️ 8 мин</span>
+                            <span>🪢 Страховка</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Футер -->
+        <footer class="footer">
+            <div>© 2026 Учебный портал по охране труда</div>
+        </footer>
+    </div>
+    
+    <!-- Модальное окно для видео -->
+    <div class="modal" id="videoModal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeModal(event)">✕</button>
+            <video id="modalVideo" controls>
+                <source src="" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    
+    <script>
+        function openVideo(videoSrc) {
+            const modal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
+            modalVideo.src = videoSrc;
+            modal.classList.add('active');
+            modalVideo.play();
+        }
+        
+        function closeModal(event) {
+            const modal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
+            modalVideo.pause();
+            modalVideo.src = '';
+            modal.classList.remove('active');
+        }
+    </script>
+</body>
+</html>
